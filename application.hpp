@@ -3,14 +3,14 @@
 #include <string>
 #include <vector>
 
-class Widget;
+class Widget;                                   //jelezzuk, hogy majd kesobb lesz egy class Widget
 class Application
 {
 protected:
-    std::vector<Widget*> widgets;
+    std::vector<Widget*> widgets;               //egy Widget* tipusu vector amiben eltaroljuk a hasznalt widgeteket
 public:
-    Application(int, int);
-    void register_widget(Widget*);
+    Application(int, int);                      //konstruktor a hatter mereteinek
+    void register_widget(Widget*);              //bele pusholja a widgeteket a widget vektorba
     void event_loop();
     virtual void action(std::string) = 0;
 };

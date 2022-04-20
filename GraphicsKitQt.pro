@@ -6,6 +6,7 @@ CONFIG -= qt
 SOURCES += \
         application.cpp \
         main.cpp \
+        szambeallit.cpp \
         widget.cpp
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/./ -lgraphics64
@@ -29,4 +30,5 @@ DEPENDPATH += $$PWD/SDL2
 
 HEADERS += \
     application.hpp \
+    szambeallit.hpp \
     widget.hpp

@@ -2,7 +2,7 @@
 #include "graphics.hpp"
 using namespace genv;
 Widget::Widget(Application* parent, int x, int y, int sx, int sy) :
-          _parent(parent), _x(x), _y(y), _size_x(sx), _size_y(sy)
+          _x(x), _y(y), _size_x(sx), _size_y(sy), _parent(parent)
 {
     _parent->register_widget(this);
 }
