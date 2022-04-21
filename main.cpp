@@ -10,11 +10,15 @@ using namespace genv;
 class MyApp: public Application
 {
 private:
-    Szambeallit* sz;
+    Szambeallit* sz1;
+    Szambeallit* sz2;
+    Szambeallit* sz3;
 public:
     MyApp(int width, int height): Application(width, height)
     {
-        sz = new Szambeallit(this, 40, 40, 200, 30);
+        sz1 = new Szambeallit(this, 40, 40, 200, 30);
+        sz2 = new Szambeallit(this, 40, 100, 40, 80);
+        sz3 = new Szambeallit(this, 40, 250, 200, 100);
     }
     void action(string id)
     {

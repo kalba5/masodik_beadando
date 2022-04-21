@@ -38,11 +38,12 @@ void Application::event_loop() {
             }
 
         }
-        for (Widget* w : widgets) {
+        for (Widget* w : widgets)                           //kirajzolja a widgeteket
+        {
             w->draw();
         }
 
-        std::cout << focus << std::endl;                     ///majd ki kell venni
+        std::cout << focus << std::endl;                    ///majd ki kell venni
         gout << refresh;
     }
 }
