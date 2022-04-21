@@ -2,6 +2,7 @@
 #include "application.hpp"
 #include "widget.hpp"
 #include "szambeallit.hpp"
+#include <iostream>
 #include <vector>
 #include <fstream>
 using namespace std;
@@ -16,12 +17,15 @@ private:
 public:
     MyApp(int width, int height): Application(width, height)
     {
-        sz1 = new Szambeallit(this, 40, 40, 200, 30);
+        //sz1 = new Szambeallit(this, 40, 40, 200, 30);
         sz2 = new Szambeallit(this, 40, 100, 40, 80);
         sz3 = new Szambeallit(this, 40, 250, 200, 100);
     }
+
     void action(string id)
     {
+        if (id == "mentes")
+            std::cout << "enter" << std::endl;
     }
 };
 
