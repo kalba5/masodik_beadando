@@ -4,10 +4,12 @@
 #include <sstream>
 
 using namespace genv;
-Szambeallit::Szambeallit(Application* parent,  int x, int y, int sx, int sy)
+Szambeallit::Szambeallit(Application* parent,  int x, int y, int sx, int sy, int lL, int uL)        //lL: lowerLimit, uL: upperLimit
     :Widget(parent, x, y, sx, sy)
 {
     _value = 0;
+    upperLimit = uL;
+    lowerLimit = lL;
 }
 
 void Szambeallit::draw()
@@ -30,20 +32,20 @@ void Szambeallit::draw()
     std::stringstream ss;                   //_value atalakitas stringre
     ss << _value;
 
-    gout << color(0,0,0) << move_to(_x+4, _y+(_size_y/2)) << text(ss.str());
+    gout << color(0,0,0) << move_to(_x+4, _y+(_size_y/2)+ gout.cascent()/2 -1) << text(ss.str());     //szoveg kirajzol
 }
 
 int Szambeallit::gombFolott(int mouse_x, int mouse_y)
 {
-    if (mouse_x > _x+_size_x-22 && mouse_x < _x+_size_x-2 && mouse_y > _y+2 && mouse_y < _y+(_size_y/2)-2)
+    if (mouse_x >= _x+_size_x-22 && mouse_x <= _x+_size_x-2 && mouse_y >= _y+2 && mouse_y <= _y+(_size_y/2))     //FEL GOMB
     {
         return 1;
     }
-    else if (mouse_x > _x+_size_x-22 && mouse_x < _x+_size_x-2 && mouse_y > _y+(_size_y/2)+2 && mouse_y < _y+_size_y-2)
+    else if (mouse_x >= _x+_size_x-22 && mouse_x <= _x+_size_x-2 && mouse_y > _y+(_size_y/2) && mouse_y <= _y+_size_y-2)     //LE GOMB
     {
         return 2;
     }
-    else
+    else        //NEM GOMB
     {
         return -1;
     }
@@ -56,34 +58,47 @@ int Szambeallit::getValue()
 
 void Szambeallit::handle(event ev)
 {
-    /*if (is_selected(ev.pos_x, ev.pos_y) && ev.button == btn_left)
-    {
-        std::cout << "itt vagyok" << std::endl;                                     ///majd torolni kell
-        red = 0;
-        blue = 255;
-    }
-    else if(!is_selected(ev.pos_x, ev.pos_y) && ev.button == btn_left)
-    {
-        red = 255;
-        blue = 0;
-    }*/
-
     //gomb kezeles
-    if (gombFolott(ev.pos_x,ev.pos_y)==1 && ev.button == btn_left)
+    if (gombFolott(ev.pos_x,ev.pos_y)==1 && ev.button == btn_left)      //FEL GOMB
     {
-        std::cout << "FEL GOMB" << std::endl;
-        _value++;
+        //std::cout << "FEL GOMB" << std::endl;
+        std::stringstream ss;
+        int tmpValue = _value+1;
+        ss << tmpValue;
+
+        if (gout.twidth(ss.str()) >= _size_x-26)
+        {
+            std::cout << "Tul szeles lenne a szam, nem ferne ki a dobozba" << std::endl;
+        }
+
+        if (_value +1 <= upperLimit && gout.twidth(ss.str()) <= _size_x-26)
+        {
+            _value++;
+        }
     }
-    else if (gombFolott(ev.pos_x,ev.pos_y)==2 && ev.button == btn_left)
+    else if (gombFolott(ev.pos_x,ev.pos_y)==2 && ev.button == btn_left)     //LE GOMB
     {
-        std::cout << "LE GOMB" << std::endl;
-        _value--;
+        //std::cout << "LE GOMB" << std::endl;
+        std::stringstream ss;
+        int tmpValue = _value-1;
+        ss << tmpValue;
+
+        if (gout.twidth(ss.str()) >= _size_x-26)
+        {
+            std::cout << "Tul szeles lenne a szam, nem ferne ki a dobozba" << std::endl;
+        }
+
+        if (_value -1 >= lowerLimit && gout.twidth(ss.str()) <= _size_x-26)
+        {
+            _value--;
+        }
+        std::cout << "_value:" << getValue() << std::endl;
+        std::cout << "lowerLimit::" << lowerLimit << std::endl;
     }
     else if (gombFolott(ev.pos_x,ev.pos_y)==-1 && ev.button == btn_left)
     {
         std::cout << "NEM GOMB" << std::endl;
     }
-
 }
 
 

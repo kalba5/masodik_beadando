@@ -7,9 +7,9 @@
 class Szambeallit : public Widget
 {
     int _value;
-
+    int upperLimit, lowerLimit;
 public:
-    Szambeallit(Application* parent, int x, int y, int sx, int sy);
+    Szambeallit(Application* parent, int x, int y, int sx, int sy, int lL, int uL);
     int getValue();
     int gombFolott(int, int);
     virtual void draw();
