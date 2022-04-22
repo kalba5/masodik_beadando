@@ -36,6 +36,11 @@ void Application::event_loop() {
         }
 
 
+        if (focus != -1)
+        {
+            widgets[focus]->handle(ev);
+        }
+
         if (ev.type == ev_mouse && ev.button == btn_left)       //hatterre balklikkre a focus visszaall -1 -re
         {
             int tmpFocus = -1;
@@ -54,10 +59,7 @@ void Application::event_loop() {
         }
 
 
-        if (focus != -1)
-        {
-            widgets[focus]->handle(ev);
-        }
+
 
 
         for (size_t i=0; i<widgets.size(); i++)             //a nem kijelolt widgetek keretenek a szinet visszarakja basicre
@@ -67,6 +69,8 @@ void Application::event_loop() {
                 widgets[i]->setColorBasic();
             }
         }
+
+        gout << color(0,0,0) << move_to(0,0) << box(600,600);       //hatter kirajzolas
 
         for (Widget* w : widgets)                           //kirajzolja a widgeteket
         {

@@ -14,7 +14,7 @@ class App: public Application
 private:
     Szambeallit* sz1;
     Szambeallit* sz2;
-    Szambeallit* sz3;
+    //Szambeallit* sz3;
     LegorduloLista* ll1;
     vector<string> vll1 = {"Ford mustang", "Audi rs7"};
 public:
