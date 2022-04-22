@@ -55,8 +55,6 @@ void Application::event_loop() {
             w->draw();
         }
 
-        std::cout << "focusban:" << focus << std::endl;                        ///majd ki kell venni
-        std::cout << "w.size:" << widgets.size() << std::endl;  ///majd ki kell venni
         gout << refresh;
     }
 }

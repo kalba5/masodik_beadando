@@ -7,7 +7,15 @@ using namespace genv;
 Szambeallit::Szambeallit(Application* parent,  int x, int y, int sx, int sy, int lL, int uL)        //lL: lowerLimit, uL: upperLimit
     :Widget(parent, x, y, sx, sy)
 {
-    _value = 0;
+    if (lL <= 0 && uL >= 0)
+    {
+        _value = 0;
+    }
+    else
+    {
+        _value = lL;
+    }
+
     upperLimit = uL;
     lowerLimit = lL;
 }
@@ -95,9 +103,74 @@ void Szambeallit::handle(event ev)
         std::cout << "_value:" << getValue() << std::endl;
         std::cout << "lowerLimit::" << lowerLimit << std::endl;
     }
-    else if (gombFolott(ev.pos_x,ev.pos_y)==-1 && ev.button == btn_left)
+    else if (gombFolott(ev.pos_x,ev.pos_y)==-1 && ev.button == btn_left) ///majd torolni kell
     {
         std::cout << "NEM GOMB" << std::endl;
+    }
+
+    if (ev.type == ev_key && ev.keycode == 82)      //FEL NYIL BILLENTYUGOMB
+    {
+        std::stringstream ss;
+        int tmpValue = _value+1;
+        ss << tmpValue;
+
+        if (gout.twidth(ss.str()) >= _size_x-26)
+        {
+            std::cout << "Tul szeles lenne a szam, nem ferne ki a dobozba" << std::endl;
+        }
+
+        if (_value +1 <= upperLimit && gout.twidth(ss.str()) <= _size_x-26)
+        {
+            _value++;
+        }
+    }
+    else if (ev.type == ev_key && ev.keycode == 81)       //LE NYIL BILLENTYUGOMB
+    {
+        std::stringstream ss;
+        int tmpValue = _value-1;
+        ss << tmpValue;
+
+        if (gout.twidth(ss.str()) >= _size_x-26)
+        {
+            std::cout << "Tul szeles lenne a szam, nem ferne ki a dobozba" << std::endl;
+        }
+
+        if (_value -1 >= lowerLimit && gout.twidth(ss.str()) <= _size_x-26)
+        {
+            _value--;
+        }
+    }
+    else if (ev.type == ev_key && ev.keycode == 75)       //PAGEUP BILLENTYUGOMB
+    {
+        std::stringstream ss;
+        int tmpValue = _value+10;
+        ss << tmpValue;
+
+        if (gout.twidth(ss.str()) >= _size_x-26)
+        {
+            std::cout << "Tul szeles lenne a szam, nem ferne ki a dobozba" << std::endl;
+        }
+
+        if (_value +10 <= upperLimit && gout.twidth(ss.str()) <= _size_x-26)
+        {
+            _value = _value+10;
+        }
+    }
+    else if (ev.type == ev_key && ev.keycode == 78)       //PAGEDOWN BILLENTYUGOMB
+    {
+        std::stringstream ss;
+        int tmpValue = _value-10;
+        ss << tmpValue;
+
+        if (gout.twidth(ss.str()) >= _size_x-26)
+        {
+            std::cout << "Tul szeles lenne a szam, nem ferne ki a dobozba" << std::endl;
+        }
+
+        if (_value -10 >= lowerLimit && gout.twidth(ss.str()) <= _size_x-26)
+        {
+            _value = _value-10;
+        }
     }
 }
 

@@ -17,9 +17,9 @@ private:
 public:
     App(int width, int height): Application(width, height)
     {
-        sz1 = new Szambeallit(this, 40, 40, 200, 30, 5, 10);
-        sz2 = new Szambeallit(this, 40, 100, 100, 20, -1000, 20);   //minimum 36-nak kell lennie a size_x -nek, hogy legalabb 1 karakter kiferjen
-        sz3 = new Szambeallit(this, 40, 250, 200, 200, -5, 1111);   //es minimum 20-nak kell lennie a size_y -nak
+        sz1 = new Szambeallit(this, 40, 40, 200, 30, -10000000, 100);
+        sz2 = new Szambeallit(this, 40, 100, 100, 20, -10000000, 100);   //minimum 36-nak kell lennie a size_x -nek, hogy legalabb 1 karakter kiferjen
+        sz3 = new Szambeallit(this, 40, 250, 200, 200, -100000000, 100);   //es minimum 20-nak kell lennie a size_y -nak
     }
 
     void action(string id)
