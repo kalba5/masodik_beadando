@@ -2,6 +2,7 @@
 #include "application.hpp"
 #include "widget.hpp"
 #include "szambeallit.hpp"
+#include "legordulolista.hpp"
 #include <iostream>
 #include <vector>
 #include <fstream>
@@ -14,12 +15,15 @@ private:
     Szambeallit* sz1;
     Szambeallit* sz2;
     Szambeallit* sz3;
+    LegorduloLista* ll1;
+    vector<string> vll1 = {"Ford mustang", "Audi rs7"};
 public:
     App(int width, int height): Application(width, height)
     {
-        sz1 = new Szambeallit(this, 40, 40, 200, 30, -10000000, 100);
-        sz2 = new Szambeallit(this, 40, 100, 100, 20, -10000000, 100);   //minimum 36-nak kell lennie a size_x -nek, hogy legalabb 1 karakter kiferjen
-        sz3 = new Szambeallit(this, 40, 250, 200, 200, -100000000, 100);   //es minimum 20-nak kell lennie a size_y -nak
+        sz1 = new Szambeallit(this, 40, 40, 200, 30, -10, 10);
+        sz2 = new Szambeallit(this, 40, 100, 100, 20, -100, 100);   //minimum 36-nak kell lennie a size_x -nek, hogy legalabb 1 karakter kiferjen
+        //sz3 = new Szambeallit(this, 40, 250, 200, 200, -100, 100);   //es minimum 20-nak kell lennie a size_y -nak
+        ll1 = new LegorduloLista(this, 40, 250, 250, 35, vll1);
     }
 
     void action(string id)

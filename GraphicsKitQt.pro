@@ -5,6 +5,7 @@ CONFIG -= qt
 
 SOURCES += \
         application.cpp \
+        legordulolista.cpp \
         main.cpp \
         szambeallit.cpp \
         widget.cpp
@@ -30,5 +31,6 @@ DEPENDPATH += $$PWD/SDL2
 
 HEADERS += \
     application.hpp \
+    legordulolista.hpp \
     szambeallit.hpp \
     widget.hpp

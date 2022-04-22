@@ -1,7 +1,6 @@
 #ifndef SZAMBEALLIT_HPP
 #define SZAMBEALLIT_HPP
 
-#include "graphics.hpp"
 #include "widget.hpp"
 
 class Szambeallit : public Widget
