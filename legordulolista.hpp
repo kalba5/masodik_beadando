@@ -18,7 +18,7 @@ public:
     LegorduloLista(Application* parent, int x, int y, int sx, int sy, vector<string> items);
     string getActualItem();
     bool gombFolott(int, int);
-    //bool asd(int,int);
+    int itemFelett(int, int);
     virtual void draw();
     virtual void handle(genv::event ev);
 };

@@ -16,7 +16,7 @@ private:
     Szambeallit* sz2;
     //Szambeallit* sz3;
     LegorduloLista* ll1;
-    vector<string> vll1 = {"Ford mustang", "Audi rs7"};
+    vector<string> vll1 = {"Ford mustang (1967)", "Audi rs7", "Pagani Zonda", "Tesla model x", "Porsche 911"};
 public:
     App(int width, int height): Application(width, height)
     {

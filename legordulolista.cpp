@@ -10,7 +10,7 @@ LegorduloLista::LegorduloLista(Application* parent,  int x, int y, int sx, int s
     _items = items;
     maxItemPiece = 5;
     _items.insert(_items.begin(), "--Select an item--");
-    actualItem = _items[0];
+    actualItem = _items[3];
     rNegyzet = 255;
     gNegyzet = 255;
     bNegyzet = 255;
@@ -29,9 +29,24 @@ void LegorduloLista::draw()
         gout << color(0,0,0) << move_to(_x+_size_x-18+i, _y+8) << line_to(_x+_size_x-12, _y+_size_y-10);
     }
 
-    if (open)
+    if (open)       //legordullo lista kirajzolas
     {
-        gout << color(255,255,255) << move_to(_x, _y+_size_y) << box(_x+_size_x,50);
+        if (_items.size() < maxItemPiece)
+        {
+            for (size_t i=0; i < _items.size(); i++)
+            {
+                gout << color(255,255,255) << move_to(_x, _y+_size_y + _size_y * i) << box(_size_x,_size_y);    //hatter
+                gout << color(0,0,0) << move_to(_x +4, _y+_size_y + _size_y * (i+1) + gout.cascent()/2 -1 - _size_y/2) << text(_items[i]);  //szoveg
+            }
+        }
+        else
+        {
+            for (int i=0; i < maxItemPiece; i++)
+            {
+                gout << color(255,255,255) << move_to(_x, _y+_size_y + _size_y * i) << box(_size_x,_size_y);        //hatter
+                gout << color(0,0,0) << move_to(_x +4, _y+_size_y + _size_y * (i+1) + gout.cascent()/2 -1 - _size_y/2) << text(_items[i]);    //szoveg
+            }
+        }
     }
 }
 
@@ -45,6 +60,34 @@ bool LegorduloLista::gombFolott(int mouse_x, int mouse_y)
     {
         return false;
     }
+}
+
+int LegorduloLista::itemFelett(int mouse_x, int mouse_y)
+{
+    unsigned long long tmp=-1;
+    if (_items.size() < maxItemPiece)
+    {
+        for (size_t i=0; i < _items.size(); i++)
+        {
+            if (mouse_x >= _x && mouse_x < _x+_size_x && mouse_y >= _y + _size_y*(i+1) && mouse_y < _y + _size_y*(i+1) + _size_y && open)
+            {
+                 tmp = i+1;
+            }
+        }
+    }
+    else
+    {
+        for (int i=0; i < maxItemPiece; i++)
+        {
+            if (mouse_x >= _x && mouse_x < _x+_size_x && mouse_y >= _y + _size_y*(i+1) && mouse_y < _y + _size_y*(i+1) + _size_y && open)
+            {
+                 tmp = i+1;
+            }
+        }
+    }
+
+    return tmp;
+
 }
 
 
@@ -68,9 +111,18 @@ void LegorduloLista::handle(event ev)
     {
         open = true;
     }
-
     else if (open && ev.type == ev_mouse && ev.button == btn_left)
     {
         open = false;
+    }
+
+
+    if (ev.type == ev_mouse && itemFelett(ev.pos_x,ev.pos_y))
+    {
+        cout << "e folott:" << itemFelett(ev.pos_x, ev.pos_y) << endl;
+        if (itemFelett(ev.pos_x,ev.pos_y) >= 0)
+        {
+            cout << "az elem:" << _items[itemFelett(ev.pos_x, ev.pos_y) -1] << endl;
+        }
     }
 }

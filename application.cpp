@@ -35,11 +35,11 @@ void Application::event_loop() {
             focus = -1;
         }
 
-
         if (focus != -1)
         {
             widgets[focus]->handle(ev);
         }
+
 
         if (ev.type == ev_mouse && ev.button == btn_left)       //hatterre balklikkre a focus visszaall -1 -re
         {
@@ -57,9 +57,6 @@ void Application::event_loop() {
                 focus = -1;
             }
         }
-
-
-
 
 
         for (size_t i=0; i<widgets.size(); i++)             //a nem kijelolt widgetek keretenek a szinet visszarakja basicre
