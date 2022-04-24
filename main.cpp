@@ -23,11 +23,10 @@ private:
 public:
     App(int width, int height): Application(width, height)
     {
-        sz1 = new Szambeallit(this, 40, 40, 200, 30, -10, 10);
-        sz2 = new Szambeallit(this, 40, 100, 100, 20, -100, 100);   //minimum 36-nak kell lennie a size_x -nek, hogy legalabb 1 karakter kiferjen
-        //sz3 = new Szambeallit(this, 40, 250, 200, 200, -100, 100);   //es minimum 20-nak kell lennie a size_y -nak
+        sz1 = new Szambeallit(this, 40, 40, 200, 35, -10, 10);    //minimum 36-nak kell lennie a size_x -nek, hogy legalabb 1 karakter kiferjen
+        sz2 = new Szambeallit(this, 310, 40, 100, 30, -100, 100);   //es minimum 20-nak kell lennie a size_y -nak
         ll1 = new LegorduloLista(this, 40, 250, 250, 35, 5, vll1);
-        ll2 = new LegorduloLista(this, 310, 250, 200,25, 1, vll2);
+        ll2 = new LegorduloLista(this, 310, 250, 200,25, 9, vll2);
 
     }
 
@@ -49,8 +48,7 @@ public:
             kifajl << "sz2: " << sz2->getValue() << endl;
             kifajl << "ll1: " << ll1->getActualItem() << endl;
             kifajl << "ll2: " << ll2->getActualItem() << endl;
-            kifajl << ". mentes vege!" << endl;
-            //szamlalo++;
+            kifajl << "Mentes vege!" << endl;
         }
     }
 };
@@ -58,9 +56,9 @@ public:
 
 int main()
 {
-    App app(600,600);
+    App appl(600,600);
     ofstream kifajl("mentes.txt");
     gout << refresh;
-    app.event_loop();
+    appl.event_loop();
     return 0;
 }

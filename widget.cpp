@@ -9,7 +9,6 @@ Widget::Widget(Application* parent, int x, int y, int sx, int sy) :
     gFrame=0;
     bFrame=0;
     _parent->register_widget(this);
-    std::cout << "a widget konstruktoraban pusholodik a vektorba" << std::endl;                 ///majd torolni kell
 }
 bool Widget::is_selected(int mouse_x, int mouse_y)
 {

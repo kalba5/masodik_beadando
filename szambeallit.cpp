@@ -18,14 +18,21 @@ Szambeallit::Szambeallit(Application* parent,  int x, int y, int sx, int sy, int
 
     upperLimit = uL;
     lowerLimit = lL;
+
+    rEgerFel =253;
+    gEgerFel =239;
+    bEgerFel =59;
+    rEgerLe =155;
+    gEgerLe =203;
+    bEgerLe =227;
 }
 
 void Szambeallit::draw()
 {
     gout << move_to(_x, _y) << color(rFrame,gFrame,bFrame) << box(_size_x, _size_y);                //keret
     gout << move_to(_x+2, _y+2) << color(255,255,255) << box(_size_x-4, _size_y-4);                 //hatter
-    gout << color(166, 166, 166) << move_to(_x+_size_x-22,_y+2) << box(20,(_size_y/2) -2);          //fel gomb hatter
-    gout << color(166, 0, 166) << move_to(_x+_size_x-22,_y+(_size_y/2)) << box(20,(_size_y/2) -2);  //le gomb hatter
+    gout << color(rEgerFel, gEgerFel, bEgerFel) << move_to(_x+_size_x-22,_y+2) << box(20,(_size_y/2) -2);          //fel gomb hatter
+    gout << color(rEgerLe, gEgerLe, bEgerLe) << move_to(_x+_size_x-22,_y+(_size_y/2)) << box(20,(_size_y/2) -2);  //le gomb hatter
 
     for (size_t i=0; i < 12; i++)                                                                   //fel haromszog
     {
@@ -67,6 +74,34 @@ int Szambeallit::getValue()
 void Szambeallit::handle(event ev)
 {
     //gomb kezeles
+    if (gombFolott(ev.pos_x,ev.pos_y)==1 && ev.type == ev_mouse)
+    {
+        rEgerFel =253;
+        gEgerFel =253;
+        bEgerFel =150;
+    }
+    else
+    {
+        rEgerFel =253;
+        gEgerFel =239;
+        bEgerFel =59;
+    }
+
+    if (gombFolott(ev.pos_x,ev.pos_y)==2 && ev.type == ev_mouse)
+    {
+        rEgerLe =177;
+        gEgerLe =217;
+        bEgerLe =236;
+    }
+    else
+    {
+        rEgerLe =155;
+        gEgerLe =203;
+        bEgerLe =227;
+    }
+
+
+
     if (gombFolott(ev.pos_x,ev.pos_y)==1 && ev.button == btn_left)      //FEL GOMB
     {
         //std::cout << "FEL GOMB" << std::endl;
@@ -100,13 +135,8 @@ void Szambeallit::handle(event ev)
         {
             _value--;
         }
-        std::cout << "_value:" << getValue() << std::endl;
-        std::cout << "lowerLimit::" << lowerLimit << std::endl;
     }
-    else if (gombFolott(ev.pos_x,ev.pos_y)==-1 && ev.button == btn_left) ///majd torolni kell
-    {
-        std::cout << "NEM GOMB" << std::endl;
-    }
+
 
     if (ev.type == ev_key && ev.keycode == 82)      //FEL NYIL BILLENTYUGOMB
     {

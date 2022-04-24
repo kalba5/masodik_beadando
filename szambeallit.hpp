@@ -7,6 +7,8 @@ class Szambeallit : public Widget
 {
     int _value;
     int upperLimit, lowerLimit;
+    int rEgerFel, gEgerFel, bEgerFel;
+    int rEgerLe, gEgerLe, bEgerLe;
 public:
     Szambeallit(Application* parent, int x, int y, int sx, int sy, int lL, int uL);
     int getValue();

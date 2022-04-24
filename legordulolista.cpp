@@ -270,9 +270,4 @@ void LegorduloLista::handle(event ev)
         }
     }
 
-    cout << "eltolas:" << eltolas << endl;
-    cout << "alsoelem:" << alsoElem << endl;
-
-
-
 }

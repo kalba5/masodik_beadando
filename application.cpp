@@ -12,7 +12,6 @@ Application::Application(int width, int height)
 void Application::register_widget(Widget* widget)
 {
     widgets.push_back(widget);
-    std::cout << "itt pusholodik bele" << std::endl;        ///majd torolni kell
 }
 void Application::event_loop() {
     event ev;
@@ -51,7 +50,7 @@ void Application::event_loop() {
                     tmpFocus = 1;
                 }
             }
-            std::cout << "tmpFocus:" << tmpFocus << std::endl;
+
             if (ev.button == btn_left && tmpFocus == -1)
             {
                 focus = -1;
