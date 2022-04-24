@@ -4,13 +4,13 @@
 
 using namespace genv;
 
-LegorduloLista::LegorduloLista(Application* parent,  int x, int y, int sx, int sy, vector<string> items)
+LegorduloLista::LegorduloLista(Application* parent,  int x, int y, int sx, int sy, int maxdb, vector<string> items)
                 :Widget(parent, x, y, sx, sy)
 {
     _items = items;
-    maxItemPiece = 5;
+    maxItemPiece = maxdb;
     _items.insert(_items.begin(), "--Select an item--");
-    actualItem = _items[3];
+    actualItem = _items[0];
     rEger = 255;
     gEger = 255;
     bEger = 255;
@@ -18,6 +18,8 @@ LegorduloLista::LegorduloLista(Application* parent,  int x, int y, int sx, int s
     egerItem = 0;
     eltolas = 0;
     felsoElem = eltolas;
+    le = true;
+    fel = false;
     if (_items.size() < maxItemPiece)
     {
         alsoElem = _items.size()-1;
@@ -208,7 +210,10 @@ int LegorduloLista::itemFelett(int mouse_x, int mouse_y)
 
 }
 
-
+string LegorduloLista::getActualItem()
+{
+    return actualItem;
+}
 
 ///handle event
 void LegorduloLista::handle(event ev)
@@ -264,6 +269,7 @@ void LegorduloLista::handle(event ev)
             alsoElem--;
         }
     }
+
     cout << "eltolas:" << eltolas << endl;
     cout << "alsoelem:" << alsoElem << endl;
 

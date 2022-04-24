@@ -17,8 +17,10 @@ class LegorduloLista : public Widget
     int alsoElem;
     int felsoElem;
     int eltolas;            //ennyivel van eltolva a gorgotol a lista
+    bool le;
+    bool fel;
 public:
-    LegorduloLista(Application* parent, int x, int y, int sx, int sy, vector<string> items);
+    LegorduloLista(Application* parent, int x, int y, int sx, int sy, int maxdb, vector<string> items);
     string getActualItem();
     bool gombFolott(int, int);
     int itemFelett(int, int);

@@ -7,6 +7,7 @@ using namespace genv;
 Application::Application(int width, int height)
 {
     gout.open(width, height);
+    kifajl.open("mentes.txt");
 }
 void Application::register_widget(Widget* widget)
 {
@@ -32,7 +33,6 @@ void Application::event_loop() {
         else if (ev.type == ev_key && ev.keycode == key_enter)
         {
             action("mentes");
-            focus = -1;
         }
 
         if (focus != -1)
@@ -74,7 +74,6 @@ void Application::event_loop() {
             w->draw();
         }
 
-        gout << move_to(360,360) << color(255,255,255) << box(16,16);
         gout << refresh;
     }
 }
