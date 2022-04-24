@@ -7,6 +7,7 @@ class Widget {
 protected:
     int _x, _y, _size_x, _size_y;
     unsigned int rFrame, gFrame, bFrame;
+    unsigned int rEger, gEger, bEger;
     Application * _parent;
 public:
     Widget(Application*, int x, int y, int sx, int sy);

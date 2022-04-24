@@ -74,6 +74,7 @@ void Application::event_loop() {
             w->draw();
         }
 
+        gout << move_to(360,360) << color(255,255,255) << box(16,16);
         gout << refresh;
     }
 }
